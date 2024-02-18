@@ -6,16 +6,17 @@ using UnityEngine.EventSystems;
 
 public class SteeringJoystick : JoystickInput
 {
-    public event Action<Vector2> OnTurn;
 
+    public event Action<Vector2> OnTurn;
+   
     public override void OnDrag(PointerEventData eventData)
     {
         base.OnDrag(eventData);
-        OnTurn?.Invoke(new Vector2(offset.x, 0f));
+        driveable?.HandleTurnInput(new Vector2(offset.x, 0f));
     }
     public override void OnPointerUp(PointerEventData eventData)
     {
         base.OnPointerUp(eventData);
-        OnTurn?.Invoke(Vector2.zero);
+        driveable?.HandleTurnInput(Vector2.zero);
     }
 }

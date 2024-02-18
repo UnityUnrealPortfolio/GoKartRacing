@@ -11,12 +11,12 @@ public class AcceleratorJoystick : JoystickInput
     public override void OnDrag(PointerEventData eventData)
     {
         base.OnDrag(eventData);
-        OnAccelerate?.Invoke(new Vector2(0f,offset.y));
+        driveable.HandleAccelerateInput(new Vector2(0f,offset.y));
     }
 
     public override void OnPointerUp(PointerEventData eventData)
     {
         base.OnPointerUp(eventData);
-        OnAccelerate?.Invoke(Vector2.zero);
+        driveable.HandleAccelerateInput(Vector2.zero);
     }
 }

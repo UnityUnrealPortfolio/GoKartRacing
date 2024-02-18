@@ -11,9 +11,11 @@ public class JoystickInput : MonoBehaviour, IDragHandler, IPointerUpHandler, IPo
     [SerializeField] protected int dragOffsetScale = 100;
   
     protected Vector2 offset;
+    protected IDriveable driveable;
 
-    private void Awake()
+    protected virtual void Awake()
     {
+        driveable = GameObject.FindGameObjectWithTag("Car").GetComponent<IDriveable>();
         joystickTransform = (RectTransform)transform;
     }
     public virtual void OnDrag(PointerEventData eventData)
