@@ -17,5 +17,8 @@ public class KeyboardInputController : MonoBehaviour
 
         Vector2 turnInput = new Vector2(Input.GetAxis("Horizontal"), 0f);
         driveable.HandleTurnInput(turnInput);
+
+        float brakeInput = Input.GetAxis("Jump");//brake with the space bar key
+        driveable.HandleBrakeInput(brakeInput);
     }
 }

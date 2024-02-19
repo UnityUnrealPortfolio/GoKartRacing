@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class SteeringJoystick : JoystickInput
 {
 
-    public event Action<Vector2> OnTurn;
+    //public event Action<Vector2> OnTurn;
    
     public override void OnDrag(PointerEventData eventData)
     {

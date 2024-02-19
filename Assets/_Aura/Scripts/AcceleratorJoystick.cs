@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class AcceleratorJoystick : JoystickInput
 {
-    public event Action<Vector2> OnAccelerate;
+    //public event Action<Vector2> OnAccelerate;
 
     public override void OnDrag(PointerEventData eventData)
     {

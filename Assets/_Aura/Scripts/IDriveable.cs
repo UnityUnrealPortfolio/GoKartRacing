@@ -6,4 +6,6 @@ public interface IDriveable
 {
     public void HandleTurnInput(Vector2 _turnInput);
     public void HandleAccelerateInput(Vector2 _accelInput);
+
+    public void HandleBrakeInput(float _brakeInput);
 }
