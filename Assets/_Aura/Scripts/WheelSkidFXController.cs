@@ -9,12 +9,14 @@ public class WheelSkidFXController : MonoBehaviour
     [SerializeField] AudioSource m_wheelFXAudioSource;
     [SerializeField] float m_slipThreshold;
     [SerializeField] GameObject m_trailObject;
+    [SerializeField] ParticleSystem m_smokeTrailParticleFx;
 
-    [SerializeField]private GameObject[] skidTrails;
-
+    private GameObject[] skidTrails;//ToDo:serialized for testing
+    private ParticleSystem[] smokeTrailParticles;
     private void Start()
     {
         skidTrails = new GameObject[4];
+        smokeTrailParticles = new ParticleSystem[4];
     }
     private void Update()
     {
@@ -81,12 +83,22 @@ public class WheelSkidFXController : MonoBehaviour
     public void StartSkidTrail(int i)
     {
         if (skidTrails[i] == null)
+        {
             skidTrails[i] = Instantiate(m_trailObject);
+            smokeTrailParticles[i] = Instantiate(m_smokeTrailParticleFx);
+            smokeTrailParticles[i].Stop();
+        }
 
-
+        //ToDo:refactor to one sub routine that accepts a smoke trail, a tire track trail and spawns and emits them
+        //spawn tire mark fx
         skidTrails[i].transform.parent = m_wheelColliders[i].transform;
         skidTrails[i].transform.localPosition = -Vector3.up * m_wheelColliders[i].radius;
         skidTrails[i].transform.rotation = Quaternion.Euler(90, 0, 0);
+
+        //spawn smoke trailfx
+        smokeTrailParticles[i].transform.parent = m_wheelColliders[i].transform;
+        smokeTrailParticles[i].transform.localPosition = -Vector3.up * m_wheelColliders[i].radius;
+        smokeTrailParticles[i].Emit(1);
     }
     public void EndSkidTrail(int i)
     {
